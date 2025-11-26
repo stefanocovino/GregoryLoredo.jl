@@ -1,20 +1,11 @@
 using GregoryLoredo
 using Documenter
-#using Literate
-
-
-
-# generate examples
-#EXAMPLE = "src/Example.jl"
-#OUTPUTJ = "build/Example.ipynb"
-#OUTPUTMD = "build/Example.md"
-
-#Literate.markdown(EXAMPLE, OUTPUTMD)
-#Literate.notebook(EXAMPLE, OUTPUTJ)
 
 
 
 DocMeta.setdocmeta!(GregoryLoredo, :DocTestSetup, :(using GregoryLoredo); recursive=true)
+
+
 
 makedocs(;
     modules=[GregoryLoredo],
@@ -27,7 +18,7 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
-        #"Example" => "Example.jl"
+        "Example" => "Example.md"
     ],
 )
 
