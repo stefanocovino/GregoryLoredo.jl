@@ -5,6 +5,13 @@ using Format
 using ZipStreams
 ```
 
+# A real life example of the Gregory & Loredo (1992) algorithm
+***
+
+This example of application of the GL92 algorithm is based on data published by [Raywade et al.(2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.495.3551R/abstract). The Authors collected [fast-radio bursts (FRBs)](https://en.wikipedia.org/wiki/Fast_radio_burst) from the event **FRB 121102** in order to identify a possible periodicity in the occurrence these events.
+
+
+
 
 ## Download the dataset
 ***
@@ -33,7 +40,10 @@ zipsource(download(url)) do source   # context management of sources with "do" s
 end
 ```
 
-And let's plot an histogram showing the FRB detection epoch distribution in out dataset.
+## Visualize the dataset
+***
+
+Let's plot an histogram showing the FRB detection epoch distribution in our dataset.
 
 ```julia
 f = Figure()
@@ -50,7 +60,15 @@ f
 ![Histogram](histdata.png)
 
 
-And define a frequency range for the analysis:
+```julia
+println("Data consists of ", length(data), " events.")
+```
+
+```julia
+Data consists of 234 events.
+```
+
+We need to define a frequency range for the analysis. We can provide a range defined manually, or rely on an automatic generation baased on data length and range. We can have a linear or logarithmic spacing.
 
 
 ```julia
@@ -61,8 +79,12 @@ wlo = minimum(wr)
 
 printfmtln("Minimum period: {:.1f} days, maximum period: {:.1f} days, number of periods: {:d}",2π/whi,2π/wlo,length(wr))
 ```
+
+```julia
 Minimum period: 10.7 days, maximum period: 250.3 days, number of periods: 117
+```
 
+## Model parameter
+***
 
-
-Literate.notebook("Example.md", outputdir=pwd(); config::AbstractDict=Dict(), kwargs...)
+The
