@@ -65,7 +65,7 @@ f
 println("Data consists of ", length(data), " events.")
 ```
 
-```julia
+```
 Data consists of 234 events.
 ```
 
@@ -81,21 +81,24 @@ wlo = minimum(wr)
 printfmtln("Minimum period: {:.1f} days, maximum period: {:.1f} days, number of periods: {:d}",2π/whi,2π/wlo,length(wr))
 ```
 
-```julia
+```
 Minimum period: 10.7 days, maximum period: 250.3 days, number of periods: 117
 ```
 
 ## Model parameter
 ***
 
-The GL92 does not assume any specific light-curve shape, and descfribe the variability pattern as a box-shaped function. The maximum number of boxes is, in principle, only limited by the availabke conputing power and data quality. For the dataset we are considering, we adopt a maximum number of boxes of 25.
+The GL92 does not assume any specific light-curve shape, and descfribe the variability pattern as a box-shaped function. The maximum number of boxes is, in principle, only limited by the availabke conputing power and data quality. For the dataset we are considering, we adopt a maximum number of boxes of `40`.
 
 
 ```julia
-mmax = 25
+mmax = 40;
 ```
 
-The first step is therefore to compute the odd ratios for each model (m from 2 to mmax) compared to the constant (no variability model, m=1).
+## Odd ratios
+***
+
+The first step is therefore to compute the odd ratios for each model (`m` from `2` to `mmax`) compared to the constant (no variability model, `m=1`).
 
 
 ```julia
@@ -105,7 +108,7 @@ omq = OddRatios(data,wr,mmax);
 And plot the histogram of the obtained odd ratios:
 
 ```julia
-PlotOddRatios(omq)
+PlotOddRatios(omq);
 ```
 ![Histogram](oddratios.png)
 
@@ -120,6 +123,82 @@ printfmtln("Probability non-constant model: {:.2g} and best number of bins: {:d}
 ```
 Probability non-constant model: 1.00 and best number of bins: 17
 ```
+
+First of all, the probability for a non-constant model is extrenely high, and apart from the simplest caes with low `m`, the most probable models require `m` in the range approximately from 6 to 30. The highest probability is for `m=17`. Of course, pay attention to the logarithm scale of the plot.
+
+
+## Periodogram for the best `m`
+***
+
+
+Let's therefore compute and plot a periodogram for this choice of `m`:
+
+```julia
+mper = Periodogram(data,wr,odrs.maxm)
+PlotPeriodogram(mper,wr);
+```
+![Histogram](mperiodogram.png)
+
+
+And let's derive some information from the periodogram data:
+
+```julia
+mpers = PeriodogramSummary(mper,wr)
+printfmtln("Log maximum power: {:.2f}, angular frequency at maximum: {:.3f}, period: {:.2f} days",log10(mpers.maxpow),mpers.maxfreq,mpers.maxper)
+```
+
+```
+Log maximum power: 4.20, angular frequency at maximum: 0.040, period: 157.69 days
+```
+
+The periodogram indeed shows a rather promiment peak at the `period = 157.69` days. This is in reasonable agreement with what reported in [Raywade et al.(2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.495.3551R/abstract), although based on different tools. It is also of interest comparing our periodogram with what reported in their paper, in [Fig. 3](https://academic.oup.com/view-large/figure/204422054/staa1237fig3.jpg).
+
+
+## Light-curve shape
+***
+
+Having derived the most probable frequency for a periodic behaviour, we can compute and plot the light-curve shape:
+
+```julia
+llpl = LightCurveShape(wr,odrs.maxm,data);
+PlotLightCurve(llpl)
+```
+
+![Histogram](lightcurve.png)
+
+And again we can compare it with the analogous plot in [Raywade et al.(2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.495.3551R/abstract), i.e., their [Fig. 4](https://academic.oup.com/view-large/figure/204422055/staa1237fig4.jpg). The two light-curves are very similar but now the phase is not *assumed*, it is just comnputed from the data.
+
+
+
+## Marginalized periodogram
+***
+
+Finally, rather than choosing the most probable `m`, it is also possible, and probably better justified, computing a periodogram marginalizing for `m`. Results are often very similar, specially if the most probable `m` stands clearly out the general distribution. But this is not always the case.
+
+The marginalized periodogram can be computed and plotted with:
+
+
+```julia
+marmper = MarginalizedPeriodogram(data,wr,mmax)
+PlotPeriodogram(marmper,wr);
+```
+
+![Histogram](marginalizedperiodogram.png)
+
+
+And the usual summary:
+
+```julia
+marmpers = PeriodogramSummary(marmper,wr)
+printfmtln("Log maximum power: {:.2f}, angular frequency at maximum: {:.3f}, period: {:.2f}",log10(marmpers.maxpow),marmpers.maxfreq,marmpers.maxper)
+```
+
+
+```
+Log maximum power: 1.56, angular frequency at maximum: 0.029, period: 218.49 days
+```
+
+As a matter of fact, the peak at `\sim 157` days is still there, but a new peak at `\sim 218` days appears. Both peaks are now less promiment, possibly suggesting that the identified periodicity is not (basing upon the available data) very solid.
 
 
 
