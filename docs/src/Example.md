@@ -11,7 +11,11 @@ using ZipStreams
 
 This example of application of the GL92 algorithm is based on data published by [Raywade et al.(2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.495.3551R/abstract). The Authors collected [fast-radio bursts (FRBs)](https://en.wikipedia.org/wiki/Fast_radio_burst) from the event **FRB 121102** in order to identify a possible periodicity in the occurrence these events.
 
+> Of course, please be aware that the purpose of this exercise is showing a possible workflow for the package. This is not, and cannot be, a full and final scientific analysis of the considered data set!
 
+
+
+Let's start!
 
 
 ## Download the dataset
@@ -198,7 +202,7 @@ printfmtln("Log maximum power: {:.2f}, angular frequency at maximum: {:.3f}, per
 Log maximum power: 1.56, angular frequency at maximum: 0.029, period: 218.49 days
 ```
 
-As a matter of fact, the peak at `\sim 157` days is still there, but a new peak at `\sim 218` days appears. Both peaks are now less promiment, possibly suggesting that the identified periodicity is not (basing upon the available data) very solid.
+As a matter of fact, the peak at `~157` days is still there, but a new peak at `~218` days appears. Both peaks are now less promiment, possibly suggesting that the identified periodicity is not (basing upon the available data) very solid.
 
 
 

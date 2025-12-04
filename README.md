@@ -12,7 +12,7 @@ The alghorithm has beed widely applied in astronomical research and this is its 
 
 ## Installation
 
-The package is not registered yet, so you need the full path:
+The package is not registered yet, so for installation you need the full path:
 
 ```julia
 using Pkg
