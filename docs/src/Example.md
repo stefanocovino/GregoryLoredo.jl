@@ -92,7 +92,7 @@ Minimum period: 10.7 days, maximum period: 250.3 days, number of periods: 117
 ## Model parameter
 ***
 
-The GL92 does not assume any specific light-curve shape, and descfribe the variability pattern as a box-shaped function. The maximum number of boxes is, in principle, only limited by the availabke conputing power and data quality. For the dataset we are considering, we adopt a maximum number of boxes of `40`.
+The GL92 does not assume any specific light-curve shape, and describe the variability pattern as a box-shaped function. The maximum number of boxes is, in principle, only limited by the availabe computing power and data quality. For the dataset we are considering, we adopt a maximum number of boxes of `40`.
 
 
 ```julia
@@ -112,7 +112,7 @@ omq = OddRatios(data,wr,mmax);
 And plot the histogram of the obtained odd ratios:
 
 ```julia
-PlotOddRatios(omq);
+PlotOddRatios(omq)
 ```
 ![Histogram](oddratios.png)
 
@@ -139,7 +139,7 @@ Let's therefore compute and plot a periodogram for this choice of `m`:
 
 ```julia
 mper = Periodogram(data,wr,odrs.maxm)
-PlotPeriodogram(mper,wr);
+PlotPeriodogram(mper,wr)
 ```
 ![Histogram](mperiodogram.png)
 
@@ -170,7 +170,7 @@ PlotLightCurve(llpl)
 
 ![Histogram](lightcurve.png)
 
-And again we can compare it with the analogous plot in [Raywade et al.(2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.495.3551R/abstract), i.e., their [Fig. 4](https://academic.oup.com/view-large/figure/204422055/staa1237fig4.jpg). The two light-curves are very similar but now the phase is not *assumed*, it is just comnputed from the data.
+And, again, we can compare it with the analogous plot in [Raywade et al.(2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.495.3551R/abstract), i.e., their [Fig. 4](https://academic.oup.com/view-large/figure/204422055/staa1237fig4.jpg). The two light-curves are very similar but now the phase is not *assumed*, it is just computed from the data.
 
 
 
@@ -184,13 +184,13 @@ The marginalized periodogram can be computed and plotted with:
 
 ```julia
 marmper = MarginalizedPeriodogram(data,wr,mmax)
-PlotPeriodogram(marmper,wr);
+PlotPeriodogram(marmper,wr)
 ```
 
 ![Histogram](marginalizedperiodogram.png)
 
 
-And the usual summary:
+And let's see the usual summary:
 
 ```julia
 marmpers = PeriodogramSummary(marmper,wr)

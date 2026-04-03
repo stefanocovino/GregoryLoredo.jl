@@ -23,7 +23,7 @@ export PlotPeriodogram
 """
   BinMult(nbins::Vector{Int})
   
-#Arguments
+# Arguments
 
 - `nbins` is a vector with the number of events for each bin.
 
@@ -38,7 +38,7 @@ end
 """
   BinningFactor(ω::Float64,Φ::Float64,m::Int,tlist::Vector{Float64})::BigFloat
 
-#Arguments
+# Arguments
 
 - `ω` is the angular frequency.
 - `Φ` is the phase.
@@ -57,7 +57,7 @@ end
 """
   ComputeBinValues(m::Int,ω::Float64,Φ::Float64,tlist::Vector{Float64})
   
-#Arguments
+# Arguments
 
 - `m` is the number of bins.
 - `ω` is the angular frequency.
@@ -77,7 +77,7 @@ end
 """
   FrequencyRange(Tlist::Vector{Float64};tstart=minimum(Tlist),tend=maximum(Tlist),logspacing=false))
   
-#Arguments
+# Arguments
 
 - `Tlist` is the vector of arrival times.
 - `tstart` is the minimum possible arrival time (default to the minimum of Tlist)
@@ -109,7 +109,7 @@ end
 """
   FullBinMult(nbins::Vector{Int})
   
-#Arguments
+# Arguments
 
 - `nbins` is a vector with the number of events for each bin.
 
@@ -126,7 +126,7 @@ end
 """
   FullBinMultLog(nbins::Vector{Int})
   
-#Arguments
+# Arguments
 
 - `nbins` is a vector with the number of events for each bin.
 
@@ -146,7 +146,7 @@ end
 """
   jt(m::Int,ω::Float64,Φ::Float64,t::Float64)
   
-#Arguments
+# Arguments
 
 - `m` is the number of bins.
 - `ω` is the angular frequency.
@@ -180,7 +180,7 @@ end
 """
   LightCurveShape(ωr::Vector{Float64},m::Int,tlist::Vector{Float64};unc=false,progress=false,phasesteps=10)::lcshape
   
-#Arguments
+# Arguments
 
 - `ωr` is the vector of the analyzed frequencies.
 - `m` is the number of bins.
@@ -251,7 +251,7 @@ end
 """
   LightCurveSimpleShape(ω::Float64,Φ::Float64,m::Int,tlist::Vector{Float64};unc=false)::lcshape
   
-#Arguments
+# Arguments
 
 - `ω` is the angular frequency.
 - `Φ` is the phase.
@@ -281,7 +281,7 @@ end
 """
   logStirlingApprox(n::Int)
 
-#Arguments
+# Arguments
 
 - `n` is the integer we want to use to compute the factorial.
 
@@ -301,7 +301,7 @@ end
 """
   MarginalizedPeriodogram(Tlist::Vector{Float64},ωr::Vector{Float64};progress=false,phasesteps=10)
   
-#Arguments
+# Arguments
 
 - `Tlist` is the vector of arrival times.
 - `ωr` is the vector of the analyzed frequencies.
@@ -405,7 +405,7 @@ end
 """
   OddRatioSummary(or::Vector{Real})::orsum
   
-#Arguments
+# Arguments
 
 - `od` is the vector of computed odd ratios for each considered light-curve bin number.
 
@@ -424,7 +424,7 @@ end
 """
   OddRatios(Tlist::Vector{Float64},ωr::Vector{Float64},mmax::Int;progress=false,phasesteps=10)
   
-#Arguments
+# Arguments
 
 - `Tlist` is the vector of arrival times.
 - `ωr` is the vector of the analyzed frequencies.
@@ -473,7 +473,7 @@ end
 """
   Periodogram(Tlist::Vector{Float64},ωr::Vector{Float64},m::Int,phasesteps=10)
   
-#Arguments
+# Arguments
 
 - `Tlist` is the vector of arrival times.
 - `ωr` is the vector of the analyzed frequencies.
@@ -525,7 +525,7 @@ end
 """
   PeriodogramSummary(per::Vector{BigFloat},ωr::Vector{Float64})::persum
   
-#Arguments
+# Arguments
 
 - `per` is the vector of powers for each considered frequency.
 - `ωr` is the vector of the analyzed frequencies.
@@ -544,7 +544,7 @@ end
 """
   PlotLightCurve(lpl::lcshape;xlabel="",ylabel="",sigma=1.)
   
-#Arguments
+# Arguments
 
 - `lpl` is a light-curve shape structure.
 - `xlabel` is the (optional) label for the x-axis.
@@ -591,7 +591,7 @@ end
 """
   PlotOddRatios(or::Vector{Real};xlabel="",ylabel="";xlabel="",ylabel="")
   
-#Arguments
+# Arguments
 
 - `od` is the vector of computed odd ratios for each considered light-curve bin number.
 - `xlabel` is the (optional) label for the x-axis.
@@ -629,7 +629,7 @@ end
 """
   PlotPeriodogram(per::Vector{BigFloat},ωr::Vector{Float64};xlabel="",ylabel="",pmax=2π/minimum(ωr),pmin=2π/maximum(ωr))
   
-#Arguments
+# Arguments
 
 - `per` is the vector of powers for each considered frequency.
 - `ωr` is the vector of the analyzed frequencies.
@@ -673,7 +673,7 @@ end
 """
   WeightingFactor(njbin::Vector{Int},m::Int,totcnt::Int)::Vector{BigFloat}
 
-#Arguments
+# Arguments
 
 - `njbin` is the vector with the number of events in each model bin.
 - `m` is the number of bins for the adopted model.
