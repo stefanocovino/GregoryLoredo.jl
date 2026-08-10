@@ -92,7 +92,7 @@ Minimum period: 10.7 days, maximum period: 250.3 days, number of periods: 117
 ## Model parameter
 ***
 
-The GL92 does not assume any specific light-curve shape, and describe the variability pattern as a box-shaped function. The maximum number of boxes is, in principle, only limited by the availabe computing power and data quality. For the dataset we are considering, we adopt a maximum number of boxes of `40`.
+The GL92 does not assume any specific light-curve shape, and describe the variability pattern as a box-shaped function. The maximum number of boxes is, in principle, only limited by the availabe computing power and data quality. For the dataset we are considering, we chhose `40` as a maximum number of boxes.
 
 
 ```julia
@@ -202,7 +202,7 @@ printfmtln("Log maximum power: {:.2f}, angular frequency at maximum: {:.3f}, per
 Log maximum power: 1.56, angular frequency at maximum: 0.029, period: 218.49 days
 ```
 
-As a matter of fact, the peak at `~157` days is still there, but a new peak at `~218` days appears. Both peaks are now less promiment, possibly suggesting that the identified periodicity is not (basing upon the available data) very solid.
+As a matter of fact, the peak at `~157` days is still there, but a new peak at `~218` days appears. Both peaks are now less prominent, possibly suggesting that the identified periodicity is not (basing upon the available data) very solid.
 
 
 
